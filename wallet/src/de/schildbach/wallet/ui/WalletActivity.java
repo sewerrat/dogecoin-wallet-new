@@ -280,6 +280,10 @@ public final class WalletActivity extends AbstractWalletActivity
 				startActivity(new Intent(this, NetworkMonitorActivity.class));
 				return true;
 
+			case R.id.wallet_options_disconnect:
+				handleDisconnect();
+				return true;
+
 			case R.id.wallet_options_restore_wallet:
 				showDialog(DIALOG_RESTORE_WALLET);
 				return true;
@@ -331,6 +335,12 @@ public final class WalletActivity extends AbstractWalletActivity
 	public void handleEncryptKeys()
 	{
 		EncryptKeysDialogFragment.show(getFragmentManager());
+	}
+
+	private void handleDisconnect()
+	{
+		getWalletApplication().stopBlockchainService();
+		finish();
 	}
 
 	@Override
