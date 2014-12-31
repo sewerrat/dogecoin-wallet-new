@@ -377,8 +377,8 @@ public final class ExchangeRatesFragment extends FancyListFragment implements On
 			currencyCodeView.setText(exchangeRate.getCurrencyCode());
 
 			final CurrencyTextView rateView = (CurrencyTextView) view.findViewById(R.id.exchange_rate_row_rate);
-			rateView.setFormat(!rateBase.isLessThan(Coin.COIN) ? Constants.LOCAL_FORMAT.minDecimals(2) : Constants.LOCAL_FORMAT.minDecimals(4));
-			rateView.setAmount(exchangeRate.rate.coinToFiat(rateBase));
+			rateView.setFormat(Constants.LOCAL_FORMAT.postfixCode().code(0, "/1k"));
+			rateView.setAmount(exchangeRate.rate.coinToFiat(rateBase).multiply(1000));
 
 			final CurrencyTextView walletView = (CurrencyTextView) view.findViewById(R.id.exchange_rate_row_balance);
 			walletView.setFormat(Constants.LOCAL_FORMAT);

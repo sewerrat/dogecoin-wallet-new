@@ -274,6 +274,9 @@
 	<string name="extended_public_key_fragment_title">Extended Public Key</string>
 	<string name="extended_public_key_fragment_share">Xpub teilen…</string>
 
+	<string name="preferences_exchange_title">Wechselkurs</string>
+	<string name="preferences_exchange_summary">Wähle die Quelle für Wechselkurse.</string>
+
 	<string name="report_issue_dialog_title_issue">Problem melden</string>
 	<string name="report_issue_dialog_title_crash">Absturz erkannt</string>
 	<string name="report_issue_dialog_message_issue">Bitte beschreibe dein Problem genau, so daß es nachvollzogen werden kann.</string>

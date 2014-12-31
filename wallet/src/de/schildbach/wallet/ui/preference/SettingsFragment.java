@@ -25,6 +25,10 @@ import android.os.Handler;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceScreen;
+
+import javax.annotation.Nonnull;
+
 import de.schildbach.wallet.Configuration;
 import de.schildbach.wallet.WalletApplication;
 import de.schildbach.wallet.WalletBalanceWidgetProvider;
@@ -117,7 +121,18 @@ public final class SettingsFragment extends PreferenceFragment implements OnPref
 		return true;
 	}
 
-	private void updateTrustedPeer(final String trustedPeer)
+	@Override
+	public boolean onPreferenceTreeClick(final PreferenceScreen preferenceScreen, final Preference preference)
+	{
+		final String key = preference.getKey();
+		if (Configuration.PREFS_KEY_EXCHANGE_PROVIDER.equals(key))
+		{
+			getPreferenceManager().getSharedPreferences().edit().putBoolean(Configuration.PREFS_KEY_EXCHANGE_FORCE_REFRESH, true).commit();
+		}
+		return false;
+	}
+
+	private void updateTrustedPeer(@Nonnull final String trustedPeer)
 	{
 		if (trustedPeer.isEmpty())
 		{
