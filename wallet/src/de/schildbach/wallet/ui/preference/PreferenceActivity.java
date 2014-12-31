@@ -17,9 +17,12 @@
 
 package de.schildbach.wallet.ui.preference;
 
+import android.preference.PreferenceManager;
+import android.view.MenuItem;
+
 import java.util.List;
 
-import android.view.MenuItem;
+import de.schildbach.wallet.Configuration;
 import de.schildbach.wallet_test.R;
 
 /**
@@ -27,6 +30,14 @@ import de.schildbach.wallet_test.R;
  */
 public final class PreferenceActivity extends android.preference.PreferenceActivity
 {
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(Configuration.PREFS_KEY_LOCALE_REFRESH, false)) {
+			finish();
+		}
+	}
+
 	@Override
 	public void onBuildHeaders(final List<Header> target)
 	{

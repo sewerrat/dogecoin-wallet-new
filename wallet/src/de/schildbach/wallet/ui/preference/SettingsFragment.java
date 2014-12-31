@@ -48,6 +48,7 @@ public final class SettingsFragment extends PreferenceFragment implements OnPref
 	private Preference btcPrecisionPreference;
 	private Preference trustedPeerPreference;
 	private Preference trustedPeerOnlyPreference;
+	private Preference localeOverridePreference;
 
 	@Override
 	public void onAttach(final Activity activity)
@@ -77,6 +78,9 @@ public final class SettingsFragment extends PreferenceFragment implements OnPref
 
 		final Preference dataUsagePreference = findPreference(Configuration.PREFS_KEY_DATA_USAGE);
 		dataUsagePreference.setEnabled(pm.resolveActivity(dataUsagePreference.getIntent(), 0) != null);
+
+		localeOverridePreference = findPreference(Configuration.PREFS_KEY_LOCALE_OVERRIDE);
+		localeOverridePreference.setOnPreferenceChangeListener(this);
 
 		final SharedPreferences prefs = getPreferenceManager().getSharedPreferences();
 		final String trustedPeer = prefs.getString(Configuration.PREFS_KEY_TRUSTED_PEER, "").trim();
@@ -114,6 +118,12 @@ public final class SettingsFragment extends PreferenceFragment implements OnPref
 				else if (preference.equals(trustedPeerOnlyPreference))
 				{
 					application.stopBlockchainService();
+				}
+				else if (preference.equals(localeOverridePreference))
+				{
+					application.updateLocale();
+					getPreferenceManager().getSharedPreferences().edit().putBoolean(Configuration.PREFS_KEY_LOCALE_REFRESH, true).commit();
+					getActivity().finish();
 				}
 			}
 		});

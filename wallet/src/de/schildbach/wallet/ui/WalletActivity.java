@@ -37,6 +37,7 @@ import org.bitcoinj.core.VerificationException;
 import org.bitcoinj.core.VersionedChecksummedBytes;
 import org.bitcoinj.core.Wallet;
 import org.bitcoinj.core.Wallet.BalanceType;
+import android.preference.PreferenceManager;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -127,6 +128,13 @@ public final class WalletActivity extends AbstractWalletActivity
 	@Override
 	protected void onResume()
 	{
+		if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(Configuration.PREFS_KEY_LOCALE_REFRESH, false))
+		{
+			PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean(Configuration.PREFS_KEY_LOCALE_REFRESH, false).commit();
+			Intent intent = getIntent();
+			finish();
+			startActivity(intent);
+		}
 		super.onResume();
 
 		handler.postDelayed(new Runnable()
