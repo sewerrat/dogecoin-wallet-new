@@ -52,6 +52,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.database.ContentObserver;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -64,6 +65,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableStringBuilder;
 import android.text.format.DateUtils;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -384,8 +386,15 @@ public class WalletTransactionsFragment extends Fragment implements LoaderCallba
 					getString(direction == Direction.SENT ? R.string.wallet_transactions_fragment_empty_text_sent
 							: R.string.wallet_transactions_fragment_empty_text_received));
 			emptyText.setSpan(new StyleSpan(Typeface.BOLD), 0, emptyText.length(), SpannableStringBuilder.SPAN_POINT_MARK);
-			if (direction != Direction.SENT)
+			if (direction != Direction.SENT) {
 				emptyText.append("\n\n").append(getString(R.string.wallet_transactions_fragment_empty_text_howto));
+
+				String warning = getString(R.string.wallet_transactions_fragment_empty_text_warning);
+				int prevLength = emptyText.length();
+				emptyText.append("\n\n").append(warning);
+				emptyText.setSpan(new ForegroundColorSpan(Color.RED), prevLength, emptyText.length(), SpannableStringBuilder.SPAN_POINT_MARK);
+
+			}
 			emptyView.setText(emptyText);
 		}
 		else
