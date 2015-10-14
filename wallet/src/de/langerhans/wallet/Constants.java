@@ -93,7 +93,7 @@ public final class Constants
 	public static final String CHAINSO_API_URL = "https://chain.so/api/v2/lite/unspent/";
 
 	/** URL to fetch version alerts from. */
-	public static final String VERSION_URL = "http://parasprite.net:8081/version";
+	public static final String VERSION_URL = "http://langerhans.de:8081/version";
 
 	/** MIME type used for transmitting single transactions. */
 	public static final String MIMETYPE_TRANSACTION = "application/x-dogetx";

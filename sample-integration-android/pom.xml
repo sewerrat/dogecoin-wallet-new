@@ -59,7 +59,7 @@
 					<androidManifestFile>AndroidManifest.xml</androidManifestFile>
 					<resourceDirectory>res</resourceDirectory>
 					<sdk>
-						<platform>10</platform>
+						<platform>22</platform>
 					</sdk>
 				</configuration>
 			</plugin>
