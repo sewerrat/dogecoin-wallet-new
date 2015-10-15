@@ -20,9 +20,9 @@ package de.schildbach.wallet;
 import java.io.File;
 
 import org.bitcoinj.core.NetworkParameters;
-import org.bitcoinj.params.MainNetParams;
-import org.bitcoinj.params.TestNet3Params;
 import org.bitcoinj.utils.MonetaryFormat;
+import org.libdohj.params.DogecoinMainNetParams;
+import org.libdohj.params.DogecoinTestNet3Params;
 
 import android.os.Build;
 import android.os.Environment;
@@ -40,7 +40,7 @@ public final class Constants
 	public static final boolean TEST = BuildConfig.FLAVOR.equals("_testnet");
 
 	/** Network this wallet is on (e.g. testnet or mainnet). */
-	public static final NetworkParameters NETWORK_PARAMETERS = TEST ? TestNet3Params.get() : MainNetParams.get();
+	public static final NetworkParameters NETWORK_PARAMETERS = TEST ? DogecoinTestNet3Params.get() : DogecoinMainNetParams.get();
 
 	public final static class Files
 	{
@@ -62,10 +62,10 @@ public final class Constants
 		public static final File EXTERNAL_WALLET_BACKUP_DIR = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 
 		/** Filename of the manual key backup (old format, can only be read). */
-		public static final String EXTERNAL_WALLET_KEY_BACKUP = "bitcoin-wallet-keys" + FILENAME_NETWORK_SUFFIX;
+		public static final String EXTERNAL_WALLET_KEY_BACKUP = "dogecoin-wallet-keys" + FILENAME_NETWORK_SUFFIX;
 
 		/** Filename of the manual wallet backup. */
-		public static final String EXTERNAL_WALLET_BACKUP = "bitcoin-wallet-backup" + FILENAME_NETWORK_SUFFIX;
+		public static final String EXTERNAL_WALLET_BACKUP = "dogecoin-wallet-backup" + FILENAME_NETWORK_SUFFIX;
 
 		/** Filename of the block store for storing the chain. */
 		public static final String BLOCKCHAIN_FILENAME = "blockchain" + FILENAME_NETWORK_SUFFIX;
@@ -77,35 +77,52 @@ public final class Constants
 	/** Maximum size of backups. Files larger will be rejected. */
 	public static final long BACKUP_MAX_CHARS = 10000000;
 
+	/** Base URL for browsing transactions, blocks or addresses. */
+	public static final String EXPLORE_BASE_URL_TX_PROD = "https://chain.so/tx/DOGE/";
+	public static final String EXPLORE_BASE_URL_TX_TEST = "https://chain.so/tx/DOGETEST/";
+	public static final String EXPLORE_BASE_URL_ADDR_PROD = "https://chain.so/address/DOGE/";
+	public static final String EXPLORE_BASE_URL_ADDR_TEST = "https://chain.so/address/DOGETEST/";
+	public static final String EXPLORE_BASE_URL_BLOCK_PROD = "https://chain.so/block/DOGE/";
+	public static final String EXPLORE_BASE_URL_BLOCK_TEST = "https://chain.so/block/DOGETEST/";
+	public static final String EXPLORE_BASE_URL_TX = NETWORK_PARAMETERS.getId().equals(NetworkParameters.ID_MAINNET) ? EXPLORE_BASE_URL_TX_PROD
+			: EXPLORE_BASE_URL_TX_TEST;
+	public static final String EXPLORE_BASE_URL_ADDR = NETWORK_PARAMETERS.getId().equals(NetworkParameters.ID_MAINNET) ? EXPLORE_BASE_URL_ADDR_PROD
+			: EXPLORE_BASE_URL_ADDR_TEST;
+	public static final String EXPLORE_BASE_URL_BLOCK = NETWORK_PARAMETERS.getId().equals(NetworkParameters.ID_MAINNET) ? EXPLORE_BASE_URL_BLOCK_PROD
+			: EXPLORE_BASE_URL_BLOCK_TEST;
+
 	private static final String BITEASY_API_URL_PROD = "https://api.biteasy.com/v2/btc/mainnet/";
 	private static final String BITEASY_API_URL_TEST = "https://api.biteasy.com/v2/btc/testnet/";
 	/** Base URL for blockchain API. */
 	public static final String BITEASY_API_URL = NETWORK_PARAMETERS.getId().equals(NetworkParameters.ID_MAINNET) ? BITEASY_API_URL_PROD
 			: BITEASY_API_URL_TEST;
 
+	public static final String DOGECHAIN_API_URL = "https://dogechain.info/api/v1/unspent/";
+	public static final String CHAINSO_API_URL = "https://chain.so/api/v2/lite/unspent/";
+
 	/** URL to fetch version alerts from. */
-	public static final String VERSION_URL = "https://wallet.schildbach.de/version";
+	public static final String VERSION_URL = "http://langerhans.de:8081/version";
 
 	/** MIME type used for transmitting single transactions. */
-	public static final String MIMETYPE_TRANSACTION = "application/x-btctx";
+	public static final String MIMETYPE_TRANSACTION = "application/x-dogetx";
 
 	/** MIME type used for transmitting wallet backups. */
-	public static final String MIMETYPE_WALLET_BACKUP = "application/x-bitcoin-wallet-backup";
+	public static final String MIMETYPE_WALLET_BACKUP = "application/x-dogecoin-wallet-backup";
 
 	/** Number of confirmations until a transaction is fully confirmed. */
 	public static final int MAX_NUM_CONFIRMATIONS = 7;
 
 	/** User-agent to use for network access. */
-	public static final String USER_AGENT = "Bitcoin Wallet";
+	public static final String USER_AGENT = "Dogecoin Wallet";
 
 	/** Default currency to use if all default mechanisms fail. */
 	public static final String DEFAULT_EXCHANGE_CURRENCY = "USD";
 
 	/** Donation address for tip/donate action. */
-	public static final String DONATION_ADDRESS = "18CK5k1gajRKKSC7yVSTXT9LUzbheh1XY4";
+	public static final String DONATION_ADDRESS = "D6LjFuMccBfg4QdH3NhyJuzW9gxS6SAuxz";
 
 	/** Recipient e-mail address for reports. */
-	public static final String REPORT_EMAIL = "bitcoin.wallet.developers@gmail.com";
+	public static final String REPORT_EMAIL = "dogecoinandroid@gmail.com";
 
 	/** Subject line for manually reported issues. */
 	public static final String REPORT_SUBJECT_ISSUE = "Reported issue";
@@ -127,10 +144,10 @@ public final class Constants
 
 	public static final BaseEncoding HEX = BaseEncoding.base16().lowerCase();
 
-	public static final String SOURCE_URL = "https://github.com/schildbach/bitcoin-wallet";
-	public static final String BINARY_URL = "https://github.com/schildbach/bitcoin-wallet/releases";
+	public static final String SOURCE_URL = "https://github.com/langerhans/dogecoin-wallet-new";
+	public static final String BINARY_URL = "http://langerhans.github.io/dogecoin-wallet-new/releases";
 	public static final String MARKET_APP_URL = "market://details?id=%s";
-	public static final String WEBMARKET_APP_URL = "https://play.google.com/store/apps/details?id=%s";
+	public static final String WEBMARKET_APP_URL = "https://play.google.com/store/apps/details?id=%s"; // TODO package name != appId
 
 	public static final int HTTP_TIMEOUT_MS = 15 * (int) DateUtils.SECOND_IN_MILLIS;
 	public static final int PEER_TIMEOUT_MS = 15 * (int) DateUtils.SECOND_IN_MILLIS;
