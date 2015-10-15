@@ -111,7 +111,7 @@ public final class Constants
 	public static final String DEFAULT_EXCHANGE_CURRENCY = "USD";
 
 	/** Donation address for tip/donate action. */
-	public static final String DONATION_ADDRESS = "DHRPHr7JweEwzSP2b239vZh1LQwe7kggSq";
+	public static final String DONATION_ADDRESS = "D6LjFuMccBfg4QdH3NhyJuzW9gxS6SAuxz";
 
 	/** Recipient e-mail address for reports. */
 	public static final String REPORT_EMAIL = "dogecoinandroid@gmail.com";

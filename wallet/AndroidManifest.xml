@@ -3,8 +3,8 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	package="de.langerhans.wallet"
 	android:installLocation="internalOnly"
-	android:versionCode="202"
-	android:versionName="2.02" >
+	android:versionCode="203"
+	android:versionName="2.03" >
 
 	<uses-sdk
 		android:minSdkVersion="15"
