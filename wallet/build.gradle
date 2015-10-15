@@ -30,6 +30,7 @@ ext {
 android {
     compileSdkVersion 'android-16'
     buildToolsVersion '23.0.2'
+    compileSdkVersion 22
 
     lintOptions {
         abortOnError false
@@ -38,6 +39,10 @@ android {
 
     defaultConfig {
         applicationId 'de.langerhans.wallet'
+        versionCode 204
+        versionName '2.0.4'
+        minSdkVersion 15
+        targetSdkVersion 22
     }
 
     buildTypes {
@@ -47,6 +52,16 @@ android {
         }
         debug {
             debuggable true
+        }
+    }
+
+    productFlavors {
+        _testnet {
+            applicationId 'de.langerhans.wallet.test'
+        }
+
+        _mainnet {
+            applicationId 'de.langerhans.wallet'
         }
     }
 
