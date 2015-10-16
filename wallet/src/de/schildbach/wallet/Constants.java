@@ -21,6 +21,7 @@ import java.io.File;
 
 import org.bitcoinj.core.NetworkParameters;
 import org.bitcoinj.utils.MonetaryFormat;
+import org.libdohj.params.AbstractDogecoinParams;
 import org.libdohj.params.DogecoinMainNetParams;
 import org.libdohj.params.DogecoinTestNet3Params;
 
@@ -44,7 +45,7 @@ public final class Constants
 
 	public final static class Files
 	{
-		private static final String FILENAME_NETWORK_SUFFIX = NETWORK_PARAMETERS.getId().equals(NetworkParameters.ID_MAINNET) ? "" : "-testnet";
+		private static final String FILENAME_NETWORK_SUFFIX = NETWORK_PARAMETERS.getId().equals(AbstractDogecoinParams.ID_DOGE_MAINNET) ? "" : "-testnet";
 
 		/** Filename of the wallet. */
 		public static final String WALLET_FILENAME_PROTOBUF = "wallet-protobuf" + FILENAME_NETWORK_SUFFIX;
@@ -84,17 +85,17 @@ public final class Constants
 	public static final String EXPLORE_BASE_URL_ADDR_TEST = "https://chain.so/address/DOGETEST/";
 	public static final String EXPLORE_BASE_URL_BLOCK_PROD = "https://chain.so/block/DOGE/";
 	public static final String EXPLORE_BASE_URL_BLOCK_TEST = "https://chain.so/block/DOGETEST/";
-	public static final String EXPLORE_BASE_URL_TX = NETWORK_PARAMETERS.getId().equals(NetworkParameters.ID_MAINNET) ? EXPLORE_BASE_URL_TX_PROD
+	public static final String EXPLORE_BASE_URL_TX = NETWORK_PARAMETERS.getId().equals(AbstractDogecoinParams.ID_DOGE_MAINNET) ? EXPLORE_BASE_URL_TX_PROD
 			: EXPLORE_BASE_URL_TX_TEST;
-	public static final String EXPLORE_BASE_URL_ADDR = NETWORK_PARAMETERS.getId().equals(NetworkParameters.ID_MAINNET) ? EXPLORE_BASE_URL_ADDR_PROD
+	public static final String EXPLORE_BASE_URL_ADDR = NETWORK_PARAMETERS.getId().equals(AbstractDogecoinParams.ID_DOGE_MAINNET) ? EXPLORE_BASE_URL_ADDR_PROD
 			: EXPLORE_BASE_URL_ADDR_TEST;
-	public static final String EXPLORE_BASE_URL_BLOCK = NETWORK_PARAMETERS.getId().equals(NetworkParameters.ID_MAINNET) ? EXPLORE_BASE_URL_BLOCK_PROD
+	public static final String EXPLORE_BASE_URL_BLOCK = NETWORK_PARAMETERS.getId().equals(AbstractDogecoinParams.ID_DOGE_MAINNET) ? EXPLORE_BASE_URL_BLOCK_PROD
 			: EXPLORE_BASE_URL_BLOCK_TEST;
 
 	private static final String BITEASY_API_URL_PROD = "https://api.biteasy.com/v2/btc/mainnet/";
 	private static final String BITEASY_API_URL_TEST = "https://api.biteasy.com/v2/btc/testnet/";
 	/** Base URL for blockchain API. */
-	public static final String BITEASY_API_URL = NETWORK_PARAMETERS.getId().equals(NetworkParameters.ID_MAINNET) ? BITEASY_API_URL_PROD
+	public static final String BITEASY_API_URL = NETWORK_PARAMETERS.getId().equals(AbstractDogecoinParams.ID_DOGE_MAINNET) ? BITEASY_API_URL_PROD
 			: BITEASY_API_URL_TEST;
 
 	public static final String DOGECHAIN_API_URL = "https://dogechain.info/api/v1/unspent/";
