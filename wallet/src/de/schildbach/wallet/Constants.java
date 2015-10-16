@@ -148,7 +148,7 @@ public final class Constants
 	public static final String SOURCE_URL = "https://github.com/langerhans/dogecoin-wallet-new";
 	public static final String BINARY_URL = "http://langerhans.github.io/dogecoin-wallet-new/releases";
 	public static final String MARKET_APP_URL = "market://details?id=%s";
-	public static final String WEBMARKET_APP_URL = "https://play.google.com/store/apps/details?id=%s"; // TODO package name != appId
+	public static final String WEBMARKET_APP_URL = "https://play.google.com/store/apps/details?id=%s";
 
 	public static final int HTTP_TIMEOUT_MS = 15 * (int) DateUtils.SECOND_IN_MILLIS;
 	public static final int PEER_TIMEOUT_MS = 15 * (int) DateUtils.SECOND_IN_MILLIS;
