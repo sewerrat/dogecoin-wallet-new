@@ -191,7 +191,7 @@ public final class WalletAddressesFragment extends FancyListFragment
 
 					case R.id.wallet_addresses_context_browse:
 						startActivity(new Intent(Intent.ACTION_VIEW,
-								Uri.withAppendedPath(config.getBlockExplorer(), "address/" + getAddress(position).toString())));
+								Uri.withAppendedPath(Uri.parse(Constants.EXPLORE_BASE_URL_ADDR), getAddress(position).toString())));
 
 						mode.finish();
 						return true;
