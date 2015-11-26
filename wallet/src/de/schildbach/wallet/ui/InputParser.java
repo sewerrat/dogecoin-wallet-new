@@ -114,7 +114,7 @@ public abstract class InputParser
 			{
 				try
 				{
-					final BitcoinURI bitcoinUri = new BitcoinURI(null, input);
+					final BitcoinURI bitcoinUri = new BitcoinURI(Constants.NETWORK_PARAMETERS, input);
 					final Address address = bitcoinUri.getAddress();
 					if (address != null && !Constants.NETWORK_PARAMETERS.equals(address.getParameters()))
 						throw new BitcoinURIParseException("mismatched network");
@@ -123,7 +123,7 @@ public abstract class InputParser
 				}
 				catch (final BitcoinURIParseException x)
 				{
-					log.info("got invalid bitcoin uri: '" + input + "'", x);
+					log.info("got invalid dogecoin uri: '" + input + "'", x);
 
 					error(R.string.input_parser_invalid_bitcoin_uri, input);
 				}

@@ -13,7 +13,7 @@
 
 	<!-- background -->
 	<color name="bg_bright">#ffffffff</color>
-	<color name="bg_less_bright">#ffbcb38b</color>
+	<color name="bg_less_bright">#d2cfc5</color>
 	<color name="bg_panel">#ffdbd2a9</color>
 	<color name="bg_form">@android:color/white</color>
 	<color name="bg_list">#40ffffff</color>
