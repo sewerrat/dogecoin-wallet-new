@@ -27,18 +27,18 @@ public enum FeeCategory
 	/**
 	 * We don't care when it confirms, but it should confirm at some time. Can be days or weeks.
 	 */
-	ECONOMIC(Coin.valueOf(2000)), // 0.02 mBTC
+	ECONOMIC(Coin.valueOf(2000)), // 0.02 mBTC Unused in DOGE
 
 	/**
 	 * Under normal network conditions, confirms within the next 15 minutes. Can take longer, but this should be an
 	 * exception. And it should not take days or weeks.
 	 */
-	NORMAL(Coin.valueOf(10000)), // 0.1 mBTC
+	NORMAL(Coin.COIN), // 1 DOGE
 
 	/**
 	 * Confirms within the next 15 minutes.
 	 */
-	PRIORITY(Coin.valueOf(50000)); // 0.5 mBTC
+	PRIORITY(Coin.valueOf(50000)); // 0.5 mBTC Unused in DOGE
 
 	public final Coin feePerKb;
 

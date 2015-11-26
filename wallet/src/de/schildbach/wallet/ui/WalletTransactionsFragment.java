@@ -303,7 +303,7 @@ public class WalletTransactionsFragment extends Fragment implements LoaderCallba
 
 		popupMenu.getMenu().findItem(R.id.wallet_transactions_context_show_qr)
 				.setVisible(!txRotation && txSerialized.length < SHOW_QR_THRESHOLD_BYTES);
-		popupMenu.getMenu().findItem(R.id.wallet_transactions_context_raise_fee).setVisible(RaiseFeeDialogFragment.feeCanBeRaised(wallet, tx));
+		popupMenu.getMenu().findItem(R.id.wallet_transactions_context_raise_fee).setVisible(false); // No support on Dogecoin yet (?)
 		popupMenu.setOnMenuItemClickListener(new OnMenuItemClickListener()
 		{
 			@Override
