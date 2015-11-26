@@ -61,6 +61,7 @@ import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.rolling.RollingFileAppender;
 import ch.qos.logback.core.rolling.TimeBasedRollingPolicy;
+import de.schildbach.wallet.service.AutosyncReceiver;
 import de.schildbach.wallet.service.BlockchainService;
 import de.schildbach.wallet.service.BlockchainServiceImpl;
 import de.schildbach.wallet.util.CrashReporter;
@@ -566,8 +567,9 @@ public class WalletApplication extends Application
 				alarmInterval / DateUtils.MINUTE_IN_MILLIS);
 
 		final AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-		final PendingIntent alarmIntent = PendingIntent.getService(context, 0, new Intent(context, BlockchainServiceImpl.class), 0);
-		alarmManager.cancel(alarmIntent);
+		final Intent startIntent = new Intent(context, AutosyncReceiver.class);
+		startIntent.setAction(AutosyncReceiver.ACTION_AUTOSYNC);
+		final PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 0, startIntent, 0);
 
 		// workaround for no inexact set() before KitKat
 		final long now = System.currentTimeMillis();
