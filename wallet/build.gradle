@@ -42,8 +42,8 @@ android {
 
     defaultConfig {
         applicationId 'de.langerhans.wallet'
-        versionCode 204
-        versionName '2.0.4'
+        versionCode 206
+        versionName '2.0.6'
         minSdkVersion 15
         targetSdkVersion 22
     }
