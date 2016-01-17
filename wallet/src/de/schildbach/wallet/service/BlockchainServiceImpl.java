@@ -297,11 +297,16 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
 	private final PeerDataEventListener blockchainDownloadListener = new AbstractPeerEventListener()
 	{
 		private final AtomicLong lastMessageTime = new AtomicLong(0);
+		private final AtomicInteger heightThrottle = new AtomicInteger(0);
 
 		@Override
 		public void onBlocksDownloaded(final Peer peer, final Block block, final FilteredBlock filteredBlock, final int blocksLeft)
 		{
-			config.maybeIncrementBestChainHeightEver(blockChain.getChainHead().getHeight());
+			int i = heightThrottle.incrementAndGet();
+			if (i >= 10 || blocksLeft < 50) {
+				config.maybeIncrementBestChainHeightEver(blockChain.getChainHead().getHeight());
+				heightThrottle.set(0);
+			}
 
 			delayHandler.removeCallbacksAndMessages(null);
 
