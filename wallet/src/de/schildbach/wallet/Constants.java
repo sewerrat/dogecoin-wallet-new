@@ -96,7 +96,7 @@ public final class Constants
 			: BITEASY_API_URL_TEST;
 
 	public static final String DOGECHAIN_API_URL = "https://dogechain.info/api/v1/unspent/";
-	public static final String CHAINSO_API_URL = "https://chain.so/api/v2/lite/unspent/";
+	public static final String CHAINSO_API_URL = "https://chain.so/api/v2/lite/unspent/DOGE/";
 
 	/** URL to fetch version alerts from. */
 	public static final String VERSION_URL = "http://langerhans.de:8081/version";

@@ -87,7 +87,7 @@ public final class RequestWalletBalanceTask
 			{
 				// Use either dogechain or chain.so
 				List<String> urls = new ArrayList<String>(2);
-				urls.add(Constants.DOGECHAIN_API_URL);
+				// TODO: Has an SSL error urls.add(Constants.DOGECHAIN_API_URL);
 				urls.add(Constants.CHAINSO_API_URL);
 				Collections.shuffle(urls, new Random(System.nanoTime()));
 
