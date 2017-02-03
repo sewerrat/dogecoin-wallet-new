@@ -132,9 +132,9 @@ public final class RequestWalletBalanceTask {
             @Override
             public void run() {
                 // Use either dogechain or chain.so
-                List<String> urls = new ArrayList<String>(2);
+                List<String> urls = new ArrayList<>(2);
                 urls.add(Constants.DOGECHAIN_API_URL);
-                // urls.add(Constants.CHAINSO_API_URL); // inactive for now
+                urls.add(Constants.CHAINSO_API_URL);
                 Collections.shuffle(urls, new Random(System.nanoTime()));
 
                 final StringBuilder url = new StringBuilder(urls.get(0));

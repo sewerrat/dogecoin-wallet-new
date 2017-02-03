@@ -23,6 +23,7 @@ import java.util.List;
 
 import org.bitcoinj.core.Address;
 import org.bitcoinj.core.ECKey;
+import org.bitcoinj.params.AbstractBitcoinNetParams;
 import org.bitcoinj.uri.BitcoinURI;
 import org.bitcoinj.utils.Threading;
 import org.bitcoinj.wallet.Wallet;
@@ -206,7 +207,7 @@ public final class WalletAddressesFragment extends FancyListFragment {
             }
 
             private void handleShowQr(final Address address) {
-                final String uri = BitcoinURI.convertToBitcoinURI(address, null, config.getOwnName(), null);
+                final String uri = BitcoinURI.convertToBitcoinURI(address, null, config.getOwnName(), null).replace(AbstractBitcoinNetParams.BITCOIN_SCHEME, "dogecoin");
                 final int size = getResources().getDimensionPixelSize(R.dimen.bitmap_dialog_qr_size);
                 BitmapFragment.show(getFragmentManager(), Qr.bitmap(uri, size));
             }

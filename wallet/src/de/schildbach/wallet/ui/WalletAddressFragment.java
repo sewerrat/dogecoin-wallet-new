@@ -23,6 +23,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import javax.annotation.Nullable;
 
 import org.bitcoinj.core.Address;
+import org.bitcoinj.params.AbstractBitcoinNetParams;
 import org.bitcoinj.uri.BitcoinURI;
 import org.bitcoinj.utils.Threading;
 import org.bitcoinj.wallet.Wallet;
@@ -248,7 +249,7 @@ public final class WalletAddressFragment extends Fragment implements NfcAdapter.
                 currentAddressQrAddress = new AddressAndLabel(currentAddress, config.getOwnName());
 
                 final String addressStr = BitcoinURI.convertToBitcoinURI(currentAddressQrAddress.address, null,
-                        currentAddressQrAddress.label, null);
+                        currentAddressQrAddress.label, null).replace(AbstractBitcoinNetParams.BITCOIN_SCHEME, "dogecoin");
 
                 final int size = getResources().getDimensionPixelSize(R.dimen.wallet_address_qr_size);
                 currentAddressQrBitmap = Qr.bitmap(addressStr, size);
