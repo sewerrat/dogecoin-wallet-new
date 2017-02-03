@@ -19,14 +19,24 @@ package de.schildbach.wallet.ui.preference;
 
 import java.util.List;
 
+import de.schildbach.wallet.Configuration;
 import de.schildbach.wallet_test.R;
 
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 
 /**
  * @author Andreas Schildbach
  */
 public final class PreferenceActivity extends android.preference.PreferenceActivity {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(Configuration.PREFS_KEY_LOCALE_REFRESH, false)) {
+            finish();
+        }
+    }
+
     @Override
     public void onBuildHeaders(final List<Header> target) {
         loadHeadersFromResource(R.xml.preference_headers, target);

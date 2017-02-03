@@ -60,6 +60,14 @@
         android:summary="@string/preferences_remind_balance_summary"
         android:title="@string/preferences_remind_balance_title" />
 
+    <ListPreference
+        android:key="locale_override"
+        android:title="Language"
+        android:summary="Select your desired language. Will restart app to apply!"
+        android:entries="@array/preferences_locale_labels"
+        android:entryValues="@array/preferences_locale_values"
+        android:defaultValue="0"/>
+
     <PreferenceCategory android:title="@string/preferences_category_labs" >
         <Preference
             android:icon="@drawable/ic_warning_grey600_24dp"

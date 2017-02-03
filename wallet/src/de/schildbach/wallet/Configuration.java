@@ -68,6 +68,8 @@ public class Configuration {
     private static final String PREFS_KEY_CHANGE_LOG_VERSION = "change_log_version";
     public static final String PREFS_KEY_REMIND_BACKUP = "remind_backup";
     private static final String PREFS_KEY_LAST_BACKUP = "last_backup";
+    public static final String PREFS_KEY_LOCALE_OVERRIDE = "locale_override";
+    public static final String PREFS_KEY_LOCALE_REFRESH = "locale_refresh";
 
     private static final int PREFS_DEFAULT_BTC_SHIFT = 0;
     private static final int PREFS_DEFAULT_BTC_PRECISION = 4;
@@ -196,6 +198,12 @@ public class Configuration {
     public boolean getLookUpWalletNames() {
         return prefs.getBoolean(PREFS_KEY_LOOK_UP_WALLET_NAMES, false);
     }
+
+    public String getLocale() {
+        final String locale = prefs.getString(PREFS_KEY_LOCALE_OVERRIDE, null);
+        return locale == null ? "0" : locale;
+    }
+
 
     public boolean versionCodeCrossed(final int currentVersionCode, final int triggeringVersionCode) {
         final boolean wasBelow = lastVersionCode < triggeringVersionCode;

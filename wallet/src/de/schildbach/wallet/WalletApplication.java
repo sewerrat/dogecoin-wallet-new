@@ -23,6 +23,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import org.bitcoinj.core.Transaction;
@@ -43,6 +44,7 @@ import com.google.common.base.Stopwatch;
 import de.schildbach.wallet.service.BlockchainService;
 import de.schildbach.wallet.service.BlockchainServiceImpl;
 import de.schildbach.wallet.util.CrashReporter;
+import de.schildbach.wallet_test.BuildConfig;
 import de.schildbach.wallet_test.R;
 
 import android.app.ActivityManager;
@@ -53,6 +55,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
@@ -496,4 +499,26 @@ public class WalletApplication extends Application {
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, now + alarmInterval, AlarmManager.INTERVAL_DAY,
                 alarmIntent);
     }
+
+    public void updateLocale() {
+        final String locale = config.getLocale();
+        Locale loc;
+        android.content.res.Configuration configuration = new android.content.res.Configuration();
+        if (!locale.equals("0")) {
+            if (locale.length() > 2)
+                loc = new Locale(locale.substring(0,1), locale.substring(3,4));
+            else
+                loc = new Locale(locale);
+        } else {
+            loc = Resources.getSystem().getConfiguration().locale;
+        }
+        Locale.setDefault(loc);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            configuration.setLocale(loc);
+        } else {
+            configuration.locale = loc;
+        }
+        getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
+    }
+
 }

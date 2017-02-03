@@ -59,6 +59,7 @@ import de.schildbach.wallet.util.WalletUtils;
 import de.schildbach.wallet_test.R;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -77,6 +78,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.format.DateUtils;
@@ -147,8 +149,17 @@ public final class WalletActivity extends AbstractWalletActivity
         MaybeMaintenanceFragment.add(getFragmentManager());
     }
 
+    @SuppressLint("CommitPrefEdits")
     @Override
     protected void onResume() {
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(Configuration.PREFS_KEY_LOCALE_REFRESH, false))
+        {
+            PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean(Configuration.PREFS_KEY_LOCALE_REFRESH, false).commit();
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+        }
+
         super.onResume();
 
         handler.postDelayed(new Runnable() {

@@ -27,6 +27,7 @@ import de.schildbach.wallet.WalletApplication;
 import de.schildbach.wallet.WalletBalanceWidgetProvider;
 import de.schildbach.wallet_test.R;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -54,6 +55,7 @@ public final class SettingsFragment extends PreferenceFragment implements OnPref
     private Preference btcPrecisionPreference;
     private Preference trustedPeerPreference;
     private Preference trustedPeerOnlyPreference;
+    private Preference localeOverridePreference;
 
     private static final Logger log = LoggerFactory.getLogger(SettingsFragment.class);
 
@@ -87,6 +89,9 @@ public final class SettingsFragment extends PreferenceFragment implements OnPref
         trustedPeerOnlyPreference = findPreference(Configuration.PREFS_KEY_TRUSTED_PEER_ONLY);
         trustedPeerOnlyPreference.setOnPreferenceChangeListener(this);
 
+        localeOverridePreference = findPreference(Configuration.PREFS_KEY_LOCALE_OVERRIDE);
+        localeOverridePreference.setOnPreferenceChangeListener(this);
+
         final Preference dataUsagePreference = findPreference(Configuration.PREFS_KEY_DATA_USAGE);
         dataUsagePreference.setEnabled(pm.resolveActivity(dataUsagePreference.getIntent(), 0) != null);
 
@@ -108,6 +113,7 @@ public final class SettingsFragment extends PreferenceFragment implements OnPref
     public boolean onPreferenceChange(final Preference preference, final Object newValue) {
         // delay action because preference isn't persisted until after this method returns
         handler.post(new Runnable() {
+            @SuppressLint("CommitPrefEdits")
             @Override
             public void run() {
                 if (preference.equals(btcPrecisionPreference)) {
@@ -117,6 +123,10 @@ public final class SettingsFragment extends PreferenceFragment implements OnPref
                     updateTrustedPeer();
                 } else if (preference.equals(trustedPeerOnlyPreference)) {
                     application.stopBlockchainService();
+                } else if (preference.equals(localeOverridePreference)) {
+                    application.updateLocale();
+                    getPreferenceManager().getSharedPreferences().edit().putBoolean(Configuration.PREFS_KEY_LOCALE_REFRESH, true).commit();
+                    getActivity().finish();
                 }
             }
         });
