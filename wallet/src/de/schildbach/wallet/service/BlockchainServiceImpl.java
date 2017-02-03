@@ -389,7 +389,8 @@ public class BlockchainServiceImpl extends android.app.Service implements Blockc
                 peerGroup.setPeerDiscoveryTimeoutMillis(Constants.PEER_DISCOVERY_TIMEOUT_MS);
 
                 peerGroup.addPeerDiscovery(new PeerDiscovery() {
-                    private final PeerDiscovery normalPeerDiscovery = new DnsDiscovery(Constants.NETWORK_PARAMETERS); // DOGE only has DNS
+                    // DOGE only has DNS, also looks like mine is the only actually working seed...
+                    private final PeerDiscovery normalPeerDiscovery = new DnsDiscovery.DnsSeedDiscovery(Constants.NETWORK_PARAMETERS, "seed.multidoge.org");
 
                     @Override
                     public InetSocketAddress[] getPeers(final long services, final long timeoutValue,

@@ -313,6 +313,10 @@ public final class WalletActivity extends AbstractWalletActivity
             startActivity(new Intent(this, NetworkMonitorActivity.class));
             return true;
 
+        case R.id.wallet_options_restore_wallet:
+            handleRestoreWallet();
+            return true;
+
         case R.id.wallet_options_disconnect:
             handleDisconnect();
             return true;

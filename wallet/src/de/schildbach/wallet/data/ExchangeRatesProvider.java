@@ -269,14 +269,14 @@ public class ExchangeRatesProvider extends ContentProvider {
                             final JSONObject averages = exchangeRate.getJSONObject("averages");
                             try {
                                 final String rate = averages.getString("day");
-                                final double btcRate = Double.parseDouble(Fiat.parseFiat(currencyCode, rate).toPlainString());
+                                final double btcRate = Double.parseDouble(Fiat.parseFiat(fiatCurrencyCode, rate).toPlainString());
                                 DecimalFormat df = new DecimalFormat("#.########");
                                 df.setRoundingMode(RoundingMode.HALF_UP);
                                 DecimalFormatSymbols dfs = new DecimalFormatSymbols();
                                 dfs.setDecimalSeparator('.');
                                 dfs.setGroupingSeparator(',');
                                 df.setDecimalFormatSymbols(dfs);
-                                final Fiat dogeRate = parseFiatInexact(currencyCode, df.format(btcRate*dogeBtcConversion));
+                                final Fiat dogeRate = parseFiatInexact(fiatCurrencyCode, df.format(btcRate*dogeBtcConversion));
 
                                 if (dogeRate.signum() > 0)
                                     rates.put(fiatCurrencyCode, new ExchangeRate(
