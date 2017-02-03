@@ -43,6 +43,7 @@ import com.google.common.base.Stopwatch;
 
 import de.schildbach.wallet.service.BlockchainService;
 import de.schildbach.wallet.service.BlockchainServiceImpl;
+import de.schildbach.wallet.service.BootstrapReceiver;
 import de.schildbach.wallet.util.CrashReporter;
 import de.schildbach.wallet_test.BuildConfig;
 import de.schildbach.wallet_test.R;
@@ -490,9 +491,9 @@ public class WalletApplication extends Application {
                 lastUsedAgo / DateUtils.MINUTE_IN_MILLIS, alarmInterval / DateUtils.MINUTE_IN_MILLIS);
 
         final AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        final PendingIntent alarmIntent = PendingIntent.getService(context, 0,
-                new Intent(context, BlockchainServiceImpl.class), 0);
-        alarmManager.cancel(alarmIntent);
+        final Intent startIntent = new Intent(context, BootstrapReceiver.class);
+        startIntent.setAction(BootstrapReceiver.ACTION_AUTOSYNC);
+        final PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 0, startIntent, 0);
 
         // workaround for no inexact set() before KitKat
         final long now = System.currentTimeMillis();

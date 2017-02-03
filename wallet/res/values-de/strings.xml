@@ -344,4 +344,12 @@
     <string name="error_http">HTTP-Fehler %1$s:\n%2$s</string>
     <string name="error_bluetooth">Bluetooth-Fehler: %1$s</string>
 
+    <string name="preferences_autosync">AutoSync</string>
+    <string name="preferences_autosync_switch_title">AutoSync aktivieren</string>
+    <string name="preferences_autosync_switch_summary">Anhaken für automatische Synchronisation der Blockchain.</string>
+    <string name="preferences_autosync_charging_summary">Anhaken, um nur während des Ladens automatisch zu synchronisieren.</string>
+    <string name="preferences_autosync_charging_title">Während des Ladens</string>
+    <string name="preferences_autosync_wifi_summary">Anhaken, um nur über WLAN automatisch zu synchronisieren.</string>
+    <string name="preferences_autosync_wifi_title">Nur mit WLAN</string>
+
 </resources>
