@@ -179,8 +179,8 @@ public final class WalletAddressesFragment extends FancyListFragment {
                     return true;
 
                 case R.id.wallet_addresses_context_browse:
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.withAppendedPath(config.getBlockExplorer(),
-                            "address/" + getAddress(position).toBase58())));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.withAppendedPath(Uri.parse(Constants.EXPLORE_BASE_URL_ADDR),
+                            getAddress(position).toBase58())));
 
                     mode.finish();
                     return true;
@@ -212,7 +212,7 @@ public final class WalletAddressesFragment extends FancyListFragment {
             }
 
             private void handleCopyToClipboard(final Address address) {
-                clipboardManager.setPrimaryClip(ClipData.newPlainText("Bitcoin address", address.toBase58()));
+                clipboardManager.setPrimaryClip(ClipData.newPlainText("Dogecoin address", address.toBase58()));
                 log.info("wallet address copied to clipboard: {}", address);
                 new Toast(activity).toast(R.string.wallet_address_fragment_clipboard_msg);
             }
