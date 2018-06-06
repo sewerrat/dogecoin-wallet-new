@@ -13,6 +13,5 @@
         </shape>
     </background>
 
-    <foreground android:drawable="@mipmap/ic_app_color_fg_108dp" />
 
 </adaptive-icon>

@@ -23,8 +23,8 @@ import java.util.concurrent.TimeUnit;
 import org.bitcoinj.core.Context;
 import org.bitcoinj.core.NetworkParameters;
 import org.bitcoinj.utils.MonetaryFormat;
-import org.libdohj.params.AbstractDogecoinParams;
-import org.libdohj.params.DogecoinMainNetParams;
+import org.libdohj.params.AbstractArtiqoxParams;
+import org.libdohj.params.ArtiqoxMainNetParams;
 import org.libdohj.params.DogecoinTestNet3Params;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,7 +47,7 @@ public final class Constants {
     public static final boolean TEST = BuildConfig.FLAVOR.equals("_testnet");
 
     /** Network this wallet is on (e.g. testnet or mainnet). */
-    public static final NetworkParameters NETWORK_PARAMETERS = TEST ? DogecoinTestNet3Params.get() : DogecoinMainNetParams.get();
+    public static final NetworkParameters NETWORK_PARAMETERS = TEST ? DogecoinTestNet3Params.get() : ArtiqoxMainNetParams.get();
 
     /** Bitcoinj global context. */
     public static final Context CONTEXT = new Context(NETWORK_PARAMETERS);
@@ -62,7 +62,7 @@ public final class Constants {
     public static final boolean ENABLE_BROWSE = true;
 
     public final static class Files {
-        private static final String FILENAME_NETWORK_SUFFIX = NETWORK_PARAMETERS.getId().equals(AbstractDogecoinParams.ID_DOGE_MAINNET) ? "" : "-testnet";
+        private static final String FILENAME_NETWORK_SUFFIX = NETWORK_PARAMETERS.getId().equals(ArtiqoxMainNetParams.ID_DOGE_MAINNET) ? "" : "-testnet";
 
         /** Filename of the wallet. */
         public static final String WALLET_FILENAME_PROTOBUF = "wallet-protobuf" + FILENAME_NETWORK_SUFFIX;

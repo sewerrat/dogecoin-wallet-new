@@ -154,7 +154,7 @@ class LangUpdater {
     static def tryAllReplacements(String s) {
         String res = s
         // Do some specifics first
-        res = res.replaceAll("bitcoinj", "libdohj")
+        res = res.replaceAll("bitcoinj", "libdohj") 
         res = res.replaceAll("bitboy", "dogecoin.com")
 
         // Esperanto specifics
